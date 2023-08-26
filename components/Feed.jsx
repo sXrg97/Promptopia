@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import PromptCard from './PromptCard';
+import { headers } from '@next.config';
 
 const PromptCardList = ({data, handleTagClick}) => {
   return (
@@ -18,7 +19,7 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch('/api/prompt');
+      const response = await fetch('/api/prompt', {cache: 'no-cache'});
       const data = await response.json();
       setPosts(data);
     }
